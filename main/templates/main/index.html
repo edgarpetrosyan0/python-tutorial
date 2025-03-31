@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Django Project</title>
+  </head>
+  <body>
+      <div class="min-h-full">
+        {% if request.path != '/users/login/' and request.path != '/users/registration/'%}
+        {% include 'main/navbar.html' %}
+        {% endif %}
+        <main>
+          <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            {% block content %}
+            <main>
+              <div class="min-h-full mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                <div class="relative px-6 pt-14 lg:px-8">
+                  <div class="mx-auto max-w-2xl">
+                    <div class="text-center">
+                      <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl">Meet your TV concierge.
+                      </h1>
+                      <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.</p>
+                      <div class="mt-10 flex items-center justify-center gap-x-6">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+            {% endblock %}
+          </div>
+        </main>
+
+      </div>
+  </body>
+</html>
+
+ 

@@ -1,0 +1,18 @@
+-- See my Data table
+-- SELECT * FROM Products;
+
+-- To rename a table in SQL,
+-- ALTER TABLE old_table_name RENAME TO new_table_name;
+
+-- To Add a row from a table in SQL
+INSERT INTO Products (title, reting, description, image, date)
+VALUES ('Product Title', 19.99, 'Description of the product', 'image_url.jpg', '2025-03-27');
+
+-- Insert Multiple Rows:
+-- INSERT INTO Products (title, reting, description, image, date)
+-- VALUES 
+--   ('Laptop', 899.99, 'A powerful laptop for work and play', 'laptop_image.jpg', '2025-03-28'),
+--   ('Headphones', 79.99, 'Noise-cancelling headphones', 'headphones_image.jpg', '2025-03-29');
+
+-- To remove a row from a table in SQL
+-- DELETE FROM Products WHERE title = 'Moana 2';

@@ -1,0 +1,36 @@
+{% extends 'main/index.html' %} 
+{% block content %}
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <h2 class="text-4xl font-semibold tracking-left text-gray-900 sm:text-5xl">
+      Blog
+    </h2>
+    <br />
+    {% for blog in blogs %}
+    <div class="flex max-w-xl flex-col items-start justify-between">
+      <div class="flex items-center gap-x-4 text-xs">
+        <small class="text-gray-500">
+          {{blog.created_at}}
+        </small>
+      </div>
+      <div class="group relative">
+        <p class="font-semibold text-gray-900">
+          <span class="absolute inset-0"></span>
+            {{blog.author}}
+        </p>
+        <h3
+          class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600"
+        >
+          <span class="absolute inset-0"></span>
+          {{blog.title}}
+        </h3>
+        <p class="line-clamp-3 text-sm/6 text-gray-600">
+          {{blog.description}}
+        </p>
+      </div>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
