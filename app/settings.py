@@ -77,11 +77,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application'
 
 
-# Media files configuration
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -95,11 +90,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DATABASES = {
   'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mystoredb',    # Name of the database
-        'USER': 'superadmin',    # Your PostgreSQL username
-        'PASSWORD': '314748',  # Your PostgreSQL password
-        'HOST': '127.0.0.1',             # Or the host if your DB is hosted somewhere
-        'PORT': '5432',                  # Default PostgreSQL port
+        'HOST': os.getenv('POSTGRES_HOST', '127.0.0.1'),          
+        'PORT': os.getenv('POSTGRES_PORT', 5432),                 
+        'USER': os.getenv('POSTGRES_USER', 'superadmin'), 
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', '314748'),  
+        'NAME': os.getenv('POSTGRES_DB_NAME', 'mystoredb'),    
+        'HOST': os.getenv('POSTGRES_HOST', '127.0.0.1'),            
     }
 } 
 
@@ -147,7 +143,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -4,7 +4,7 @@ from django.db import models
 
 class Product(models.Model):
     title = models.CharField(max_length=256)
-    reting = models.IntegerField(max_length=1)
+    reting = models.IntegerField()
     description = models.TextField()
     imageUrl = models.URLField()
     created_at = models.DateField(default=datetime.date.today)  
