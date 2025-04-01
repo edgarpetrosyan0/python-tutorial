@@ -16,3 +16,10 @@ VALUES ('Product Title', 19.99, 'Description of the product', 'image_url.jpg', '
 
 -- To remove a row from a table in SQL
 -- DELETE FROM Products WHERE title = 'Moana 2';
+
+# CREATE DATABASE mystoredb; 
+# CREATE USER superadmin WITH PASSWORD '314748'; 
+# ALTER ROLE superadmin SET client_encoding TO 'utf8';
+# ALTER ROLE superadmin SET default_transaction_isolation TO 'read committed';
+# ALTER ROLE superadmin SET timezone TO 'UTC';
+# GRANT ALL PRIVILEGES ON DATABASE mystoredb TO superadmin;

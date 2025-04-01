@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w)!9@vel*f@0k%qpzt2i%bypup)j7ew@s_ce58l158vznj-f)k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -89,26 +89,22 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
   'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('POSTGRES_HOST', '127.0.0.1'),          
-        'PORT': os.getenv('POSTGRES_PORT', 5432),                 
-        'USER': os.getenv('POSTGRES_USER', 'superadmin'), 
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', '314748'),  
-        'NAME': os.getenv('POSTGRES_DB_NAME', 'mystoredb'),    
-        'HOST': os.getenv('POSTGRES_HOST', '127.0.0.1'),            
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': os.getenv('POSTGRES_DB', 'mystoredb'),
+        # 'USER': os.getenv('POSTGRES_USER', 'superadmin'),
+        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD', '314748'),
+        # 'HOST': os.getenv('POSTGRES_HOST', 'pgdb'), 
+        # 'PORT': os.getenv('POSTGRES_PORT', '5432'),
+
+        'ENGINE': 'django.db.backends.postgresql', 
+        'NAME': 'mystoredb', 
+        'USER': 'superadmin',
+        'PASSWORD': '314748', 
+        'HOST': 'pgdb',
+        'PORT': '5432', 
     }
 } 
-
-#Սա DB սարքելու համար է
-#Մտնել PostgreSQL տերմինալ
-# CREATE DATABASE mystoredb; 
-# CREATE USER superadmin WITH PASSWORD '314748'; 
-# ALTER ROLE superadmin SET client_encoding TO 'utf8';
-# ALTER ROLE superadmin SET default_transaction_isolation TO 'read committed';
-# ALTER ROLE superadmin SET timezone TO 'UTC';
-# GRANT ALL PRIVILEGES ON DATABASE mystoredb TO superadmin;
-
-
+ 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
