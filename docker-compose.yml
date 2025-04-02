@@ -21,7 +21,7 @@ services:
 
     container_name: pgdb
     volumes:
-      - pgdbdata:/var/lib/postgresql/data/
+      - pgdbdata:/var/lib/postgresql/data
 
 volumes:
-  pgdbdata: null
+  pgdbdata:
