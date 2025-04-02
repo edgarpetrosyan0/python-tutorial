@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   django:
     build: .
@@ -18,6 +16,7 @@ services:
       - POSTGRES_DB=mystoredb
       - POSTGRES_USER=superadmin
       - POSTGRES_PASSWORD=314748
+      - POSTGRES_HOST=pgdb
 
     container_name: pgdb
     volumes:

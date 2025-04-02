@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-w)!9@vel*f@0k%qpzt2i%bypup)j7ew@s_ce58l158vznj-f)k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0','host.docker.internal']
 
 
 # Application definition
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'main',
     'products',
     'blogs',
-    'users'
+    'accounts'
 ]
 
 
@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': 'mystoredb', 
         'USER': 'superadmin',
         'PASSWORD': '314748', 
-        'HOST': 'pgdb',
+        'HOST': 'host.docker.internal',
         'PORT': '5432', 
     }
 } 

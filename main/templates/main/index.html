@@ -8,7 +8,7 @@
   </head>
   <body>
       <div class="min-h-full">
-        {% if request.path != '/users/login/' and request.path != '/users/registration/'%}
+        {% if request.path != '/accounts/login/' and request.path != '/accounts/registration/'%}
         {% include 'main/navbar.html' %}
         {% endif %}
         <main>
