@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import RegistrationSerializer, LoginSerializer
+from drf_yasg.utils import swagger_auto_schema
 
 
 def registrationPage(request):
@@ -52,14 +53,24 @@ def loginPage(request):
 
 # API Views for JWT Authentication
 class UserRegistrationView(APIView):
+    @swagger_auto_schema(
+        operation_description="Registration",
+        request_body= RegistrationSerializer,
+    )
     def post(self, request):
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
+            serializer.save()
             return Response({'message': 'User registered successfully!'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class UserLoginView(APIView):
+    @swagger_auto_schema(
+        operation_description="Login",
+        request_body= LoginSerializer,
+    )
+    
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
