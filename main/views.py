@@ -3,4 +3,5 @@ from django.http import HttpRequest
 from django.shortcuts import render
 
 def home(request: HttpRequest):
-    return render(request, 'main/index.html')
+    print(request.user.username)
+    return render(request, 'main/index.html',{'username': request.user.username})

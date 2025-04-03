@@ -1,83 +1,35 @@
-# views.py
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.contrib.auth.models import User
-from django.contrib import messages
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
+from django.contrib.auth import authenticate, login
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import RegistrationSerializer, LoginSerializer
-from drf_yasg.utils import swagger_auto_schema
+from django.contrib import messages
 
-
-def registrationPage(request):
-    User = get_user_model() 
-
-    if request.user.is_authenticated:
-        return render(request=request, template_name="/")
-
+def register_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username', '')
-        email = request.POST.get('email', '')
-        password = request.POST.get('password', '')
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
 
-        user = User.objects.create_user(
-            username = username,
-            email = email,
-            password = password)
-        
-        user = authenticate(username=username,password=password)
+        User.objects.create_user(username=username,email=email,password=password)
+        messages.success(request, "Registration successful!")
+        return redirect('login')
 
-        if user is not None:
-            login(request,user)
-        return redirect("/")
-    
-    return render(request=request, template_name="registration.html", context={})
+    return render(request, 'registration.html')
 
-
-def loginPage(request):
+def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        user = authenticate(username=username,password=password)
-        if user is not None:
-            login(request,user)
-            return redirect("/")
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            refresh = RefreshToken.for_user(user)  # Generate JWT tokens
+            request.session['access_token'] = str(refresh.access_token)
+            request.session['refresh_token'] = str(refresh)
+            return redirect('/')
         else:
-            return HttpResponse("fail")
+            messages.error(request, "Invalid credentials")
+            return redirect('login')
 
-    return render(request=request, template_name="login.html", context={})
-
-
-# API Views for JWT Authentication
-class UserRegistrationView(APIView):
-    @swagger_auto_schema(
-        operation_description="Registration",
-        request_body= RegistrationSerializer,
-    )
-    def post(self, request):
-        serializer = RegistrationSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'User registered successfully!'}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class UserLoginView(APIView):
-    @swagger_auto_schema(
-        operation_description="Login",
-        request_body= LoginSerializer,
-    )
-    
-    def post(self, request):
-        serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.validated_data
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                'refresh': str(refresh), 
-                'access': str(refresh.access_token)},
-                 status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return render(request, 'login.html')
