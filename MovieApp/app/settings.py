@@ -95,19 +95,18 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
   'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.getenv('POSTGRES_DB', 'mystoredb'),
-        # 'USER': os.getenv('POSTGRES_USER', 'superadmin'),
-        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD', '314748'),
-        # 'HOST': os.getenv('POSTGRES_HOST', 'pgdb'), 
-        # 'PORT': os.getenv('POSTGRES_PORT', '5432'),
-
-        'ENGINE': 'django.db.backends.postgresql', 
-        'NAME': 'mystoredb', 
-        'USER': 'superadmin',
-        'PASSWORD': '314748', 
-        'HOST': 'localhost',
-        'PORT': '5432', 
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'), 
+        'PORT': os.getenv('POSTGRES_PORT'),
+        # 'ENGINE': 'django.db.backends.postgresql', 
+        # 'NAME': 'mystoredb', 
+        # 'USER': 'superadmin',
+        # 'PASSWORD': '314748', 
+        # 'HOST': 'localhost',
+        # 'PORT': '5432', 
     }
 } 
  
