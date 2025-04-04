@@ -8,9 +8,25 @@ from products.serializers import ProductSerializer
 from products.models import Product
 
 
-def productPage(request):
+def productListPage(request):
     items = Product.objects.all()
-    return render(request, 'products/product.html', {'products': items})
+    return render(request, 'products/product-list.html', {'products': items})
+
+
+def productDetailPage(request, id):
+        item = Product.objects.get(id=id)
+        return render(request, 'products/product-detail.html', {'product': item})
+
+
+def productAdd(request):
+        serializer = ProductSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        print(request)
+        return render(request, 'products/product-list.html', {'product': request})
+
+def search (request):
+    pass
 
 
 class ProductGetAll(APIView):

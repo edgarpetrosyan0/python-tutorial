@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 urlpatterns = [
     #For HTML page
     path('login/', login_view, name='login'), 
-    path('registration/', register_view, name='registration'),
+    path('registration/', registration_view, name='registration'),
     
     # Getting and refreshing a JWT token
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

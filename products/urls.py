@@ -12,7 +12,11 @@ from products.views import * # '*' imports all path views.
 # )
 
 urlpatterns = [
-    path('', productPage, name='product'),  # HTML pag
+    path('', productListPage, name='product-list'),  # HTML pag
+    path('product-detail/<int:id>/', productDetailPage, name='product-detail'), 
+    path('product-add/', productAdd, name='product-add'), 
+    path("search/", search, name="search"),
+
 
     path('api/v3/getAll', ProductGetAll.as_view() ,name=""),  #all products, 
     path('api/v3/<int:id>/', ProductGetById.as_view()),  #product by ID

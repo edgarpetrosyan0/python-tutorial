@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib import messages
 
-def register_view(request):
+def registration_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
